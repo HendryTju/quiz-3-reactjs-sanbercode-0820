@@ -1,117 +1,64 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
+import axios from "axios";
+import { MovieContext } from "./template/MovieContext";
 
 function Home() {
+  const [listMovie, setListMovie] = useContext(MovieContext);
+  useEffect(() => {
+    if (listMovie.length === 0) {
+      axios
+        .get(`http://backendexample.sanbercloud.com/api/movies`)
+        .then((res) => {
+          const movie = res.data.map((el) => {
+            return {
+              id: el.id,
+              rating: el.rating,
+              title: el.title,
+              description: el.description,
+              duration: el.duration,
+              genre: el.genre,
+              year: el.year,
+            };
+          });
+          movie.sort((a, b) =>
+            a.rating < b.rating ? 1 : b.rating < a.rating ? -1 : 0
+          );
+          // console.log(movie);
+          setListMovie(movie);
+        });
+    }
+  });
+
   return (
-    <div>
-      <header>
-        <img id="logo" src="../asset/img/logo.png" width="200px" />
-        <nav>
-          <ul>
-            <li>
-              <a href="index.html">Home </a>{" "}
-            </li>
-            <li>
-              <a href="about.html">About </a>{" "}
-            </li>
-            <li>
-              <a href="contact.html">Movie List Editor </a>{" "}
-            </li>
-          </ul>
-        </nav>
-      </header>
+    <>
       <section>
-        <h1>Featured Posts</h1>
+        <h1>Daftar Film Film Terbaik</h1>
         <div id="article-list">
-          <div className="article">
-            <a href>
-              <h3>Lorem Post 1</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div className="article">
-            <a href>
-              <h3>Lorem Post 2</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div className="article">
-            <a href>
-              <h3>Lorem Post 3</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div className="article">
-            <a href>
-              <h3>Lorem Post 4</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div className="article">
-            <a href>
-              <h3>Lorem Post 5</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div>
-            <a href>
-              <h3>Lorem Post 5</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
-          <div>
-            <a href>
-              <h3>Lorem Post 5</h3>
-            </a>
-            <p>
-              Lorem Ipsum Dolor Sit Amet, mea te verear signiferumque, per illum
-              labores ne. Blandit omnesque scripserit pri ex, et pri dicant
-              eirmod deserunt. Aeque perpetua ea nec. Sit erant patrioque
-              delicatissimi ut. Et sea quem sint, nam in minim voluptatibus.
-              Etiam placerat eam in.
-            </p>
-          </div>
+          {listMovie.map((el) => {
+            return (
+              <div>
+                <h3>{el.title}</h3>
+                <ul>
+                  <li>
+                    <b>Rating : {el.rating}</b>
+                  </li>
+                  <li>
+                    <b>Durasi : {el.duration} </b>
+                  </li>
+                  <li>
+                    <b>Genre : {el.genre} </b>
+                  </li>
+                </ul>
+                <p>
+                  <b>Deskripsi : </b>
+                  {el.description}
+                </p>
+              </div>
+            );
+          })}
         </div>
       </section>
-      <footer>
-        <h5>copyright © 2020 by Sanbercode</h5>
-      </footer>
-    </div>
+    </>
   );
 }
 
