@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-
+import Header from "./header.jsx";
 import AboutMe from "../about";
 import Home from "../home";
 import Movie from "../movie/movie";
@@ -11,7 +11,7 @@ function Routes() {
   const [, , , , isLoggin] = useContext(MovieContext);
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <div class="wrapper">
         <Switch>
           <Route exact path="/about">

@@ -1,0 +1,127 @@
+body {
+  font-family: "Slabo", Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("../img/pattern.jpg");
+}
+header {
+  background-color: #ffffff;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  top: 0;
+}
+header #logo {
+  align-self: center;
+}
+header nav {
+  display: flex;
+}
+header nav ul {
+  align-self: center;
+  list-style: none;
+}
+header nav ul li {
+  display: inline;
+  padding: 5px 10px;
+}
+
+section {
+  max-width: 1000px;
+  margin: 100px auto 0 auto;
+  background-color: #ffffff;
+  padding: 20px;
+}
+
+section h1 {
+  text-align: center;
+}
+
+section #article-list div {
+  margin-top: 30px;
+  border-bottom: 1px solid #000000;
+}
+p {
+  text-align: justify;
+}
+
+footer {
+  margin-top: 20px;
+  width: 100%;
+  background-color: #000000;
+  padding: 10px 0;
+  color: #ffffff;
+  text-align: center;
+}
+
+.wrapper {
+  min-height: calc(100vh - 120px);
+}
+* {
+  box-sizing: border-box;
+}
+.list-tabel {
+  max-width: 900px;
+  margin: 20px auto;
+}
+
+.list-tabel table {
+  width: 100%;
+  border-spacing: 0;
+}
+
+td {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 8px;
+  text-align: left;
+}
+
+table thead {
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #ffffff;
+}
+th {
+  text-align: left;
+  padding: 10px;
+}
+
+button {
+  padding: 8px 20px;
+  border: 0;
+  background-color: rgb(18, 120, 221);
+  color: #ffffff;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 3px;
+}
+
+button:hover {
+  background-color: rgb(12, 98, 184);
+}
+
+form {
+  border: 1px solid #000000;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+form div {
+  margin-bottom: 10px;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+form div label {
+  font-weight: 500;
+}
+
+form div input,
+form div textarea {
+  width: 70%;
+  padding: 5px;
+}
